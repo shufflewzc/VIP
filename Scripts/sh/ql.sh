@@ -368,5 +368,9 @@ if [ "$access" != "2" ]; then
 else
     exit 0
 fi
-
+#增加ninja启动方式，把ninja启动命令写入青龙的自启文件中，随青龙容器启动而启动
+ninja_start_set() {
+    docker exec -it $CONTAINER_NAME bash -c "cd config && echo -e '\ncd /ql/ninja/backend\npm2 start' >> extra.sh"
+}
+ninja_start_set
 log "全面部署已完成！enjoy!!!"
